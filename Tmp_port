@@ -1,0 +1,35 @@
+//Two functions require elaboration and the coefficients must be determined;  
+volatile int desired_temp; //Declared in Controller code w/ address passed to subprocess 
+int const K_p, K_i, K_d; // values determined by testing 
+
+void Thermal(int * desired_temp){ 
+    volatile int r_t = (*desired_temp) 
+    int y_t, u_t, P, I, D;  
+    int diff_sum = 0; 
+    int last_diff = 0; 
+
+    while (True){  
+
+        y_t = get_sensor_data(); 
+        diff = r_t - y_t; 
+        diff_sum += diff;  
+        P = K_p * diff; 
+        I = K_I * diff_sum; 
+        D = K_d * (diff - last_diff)  
+        u_t = P + I + D; 
+
+        set_Vout(u_t); 
+
+        while(temp_clk != 0);; //temp_clk is determined in the system to grab data at desired intervals  
+    }; //loops until process is killed by the controller 
+
+    return;	 
+} 
+
+int get_sensor_data(){
+    
+}
+
+int set_Vout(int u_t){
+    
+}
