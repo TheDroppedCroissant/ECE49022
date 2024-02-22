@@ -153,7 +153,7 @@ float get_sensor_data(void){
 	uint8_t buf[8][2];
 	float temp_vals[8];
 	int temp_hold;
-	for(uint8_t i = 0x90; i < 0xA0; i += 2){
+	for(uint8_t i = 0x48; i < 0x50; i += 1){
 		buf[i][1] = 0x00;
 		if(HAL_I2C_Master_Transmit(&hi2c1, i, buf[i], 1, 5000) == HAL_OK ){
 			HAL_I2C_Master_Receive(&hi2c1, i, buf[i], 2, 5000);
